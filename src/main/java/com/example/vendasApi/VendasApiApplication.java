@@ -11,15 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class VendasApiApplication {
 
-	@Autowired
-	@Qualifier("appName")
-	public String appName;
-
-	@GetMapping("/hello")
-	public String oi() {
-		return appName;
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(VendasApiApplication.class, args);
 	}
