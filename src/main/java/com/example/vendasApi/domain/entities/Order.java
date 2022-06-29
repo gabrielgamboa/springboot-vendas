@@ -1,19 +1,40 @@
-package com.example.vendasApi.domain.entity;
+package com.example.vendasApi.domain.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+
+@Entity
+@Table(name = "tb_order")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
+
+    @Column
     private LocalDate orderDate;
+
+    @Column(length = 20, precision = 2)
     private BigDecimal total;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderProduct> items;
+
+
+    public List<OrderProduct> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderProduct> items) {
+        this.items = items;
+    }
 
     public Integer getId() {
         return id;

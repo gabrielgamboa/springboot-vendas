@@ -1,10 +1,19 @@
-package com.example.vendasApi.domain.entity;
+package com.example.vendasApi.domain.entities;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "tb_product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(length = 100)
     private String description;
+
+    @Column
     private BigDecimal price;
 
     public Integer getId() {
